@@ -1,4 +1,4 @@
-﻿﻿// 23513 - Diogo Lourenço
+﻿// 23513 - Diogo Lourenço
 // 23521 - Gustavo Cruz
 
 using System;
@@ -58,7 +58,6 @@ namespace apMartianPathways
             CreateAdjacencyMatrix();
 
             UpdateComboBoxes();
-            UpdateLsbCities();
         }
         private void CreateAdjacencyMatrix()
         {
@@ -102,13 +101,6 @@ namespace apMartianPathways
                 cbxDestino.Items.Add(c.CityName.Trim());
             }
         }
-
-        private void UpdateLsbCities()
-        {
-            lsbCities.Items.Clear();
-            foreach (City c in cities)
-                lsbCities.Items.Add(c)
-        }
         
         private void FrmPaths_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -144,13 +136,6 @@ namespace apMartianPathways
                     MessageBoxIcon ico = MessageBoxIcon.Exclamation;
                     MessageBox.Show(msg, cap, btn, ico);
                 }
-                City city = new City();
-                city.CityName = txtCity.Text;
-                city.X = (double)udX.Value;
-                city.Y = (double)udY.Value;
-
-                table.Insert(city);
-                UpdateLsbCities();
             }
             catch (NullReferenceException)
             {
@@ -267,14 +252,6 @@ namespace apMartianPathways
             int distance = (int)udDistance.Value;
 
             adjacencyMatrix[originIndex, destinationIndex] = distance
-        }
-
-        private void UpdateLsbCities()
-        {
-            lsbCities.Items.Clear();
-            var cities = table.Content();
-            foreach (City c in cities)
-                lsbCities.Items.Add(c);
         }
     }
 }
